@@ -1032,7 +1032,10 @@ h3 {
     linear-gradient(140deg, var(--ink), var(--charcoal) 52%, var(--graphite));
   border-radius: inherit;
   clip-path: inset(0 var(--reveal, 0%) 0 0);
-  will-change: clip-path;
+  will-change: clip-path, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   pointer-events: none;
 }
 
@@ -1776,7 +1779,6 @@ body.reveal-ready [data-reveal].is-visible {
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
     scroll-padding: 16px;
-    touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }

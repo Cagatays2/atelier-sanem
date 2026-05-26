@@ -80,12 +80,20 @@ function easeInOutCubic(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
-function updateWorkSection() {
-  if (!workSection || !workTrack) return;
+let workGeometry = null;
+
+function recalculateWorkGeometry() {
+  if (!workSection || !workTrack) {
+    workGeometry = null;
+    return;
+  }
 
   const cards = workTrack.querySelectorAll(".work-card");
   const cardCount = cards.length;
-  if (cardCount === 0) return;
+  if (cardCount === 0) {
+    workGeometry = null;
+    return;
+  }
 
   const firstCard = cards[0];
   const lastCard = cards[cardCount - 1];
@@ -102,7 +110,26 @@ function updateWorkSection() {
   const exitHold = isMobileWork ? clamp(vh * 0.08, 48, 90) : 0;
   const totalAnim = cardCount * revealLength + (cardCount - 1) * slideLength;
 
-  workSection.style.setProperty("--work-section-height", `${stickyHeight + totalAnim + entryHold + exitHold}px`);
+  workGeometry = {
+    cards,
+    cardCount,
+    slideStep,
+    entryHold,
+    revealLength,
+    slideLength,
+    totalAnim,
+  };
+
+  workSection.style.setProperty(
+    "--work-section-height",
+    `${stickyHeight + totalAnim + entryHold + exitHold}px`
+  );
+}
+
+function updateWorkSection() {
+  if (!workSection || !workGeometry) return;
+
+  const { cards, cardCount, slideStep, entryHold, revealLength, slideLength, totalAnim } = workGeometry;
 
   const sectionRect = workSection.getBoundingClientRect();
   const scrolled = clamp(0 - sectionRect.top - entryHold, 0, totalAnim);
@@ -282,14 +309,24 @@ function requestWorkUpdate() {
 
 window.addEventListener("scroll", requestWorkUpdate, { passive: true });
 window.addEventListener("resize", () => {
+  recalculateWorkGeometry();
+  requestWorkUpdate();
+});
+window.addEventListener("orientationchange", () => {
+  recalculateWorkGeometry();
   requestWorkUpdate();
 });
 
 setServicePage(0);
+recalculateWorkGeometry();
+updateWorkSection();
+
 window.addEventListener("load", () => {
+  recalculateWorkGeometry();
   updateWorkSection();
 
   requestAnimationFrame(() => {
+    recalculateWorkGeometry();
     updateWorkSection();
     scrollToCurrentHash();
   });
@@ -297,4 +334,3 @@ window.addEventListener("load", () => {
 window.addEventListener("hashchange", () => {
   requestAnimationFrame(scrollToCurrentHash);
 });
-updateWorkSection();

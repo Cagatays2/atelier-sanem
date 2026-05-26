@@ -1566,18 +1566,19 @@ body.reveal-ready [data-reveal].is-visible {
   }
 
   .hero-section {
-    grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 22px;
     min-height: auto;
-    padding-top: 96px;
+    padding-top: 94px;
     padding-bottom: 64px;
-    align-items: center;
+    align-items: start;
   }
 
   h1 {
-    max-width: 8.8ch;
-    margin-bottom: 11px;
-    font-size: clamp(31px, 8.8vw, 41px);
+    max-width: 11ch;
+    margin: 0 auto 14px;
+    font-size: clamp(43px, 13.8vw, 58px);
+    text-align: center;
   }
 
   h2 {
@@ -1585,40 +1586,49 @@ body.reveal-ready [data-reveal].is-visible {
   }
 
   .hero-copy p:not(.eyebrow) {
-    font-size: 12px;
-    line-height: 1.42;
+    max-width: 34ch;
+    margin: 0 auto;
+    font-size: 13px;
+    line-height: 1.55;
+    text-align: center;
   }
 
   .hero-copy .eyebrow {
-    margin-bottom: 8px;
-    font-size: 9px;
+    display: none;
+  }
+
+  .hero-copy {
+    max-width: none;
   }
 
   .button-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    margin-top: 12px;
-    padding-bottom: 28px;
+    gap: 10px;
+    width: min(100%, 280px);
+    margin: 24px auto 0;
+    padding-bottom: 0;
   }
 
   .button {
     width: 100%;
-    min-height: 32px;
-    padding: 0 9px;
-    font-size: 10px;
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 11px;
   }
 
   .hero-image {
-    min-height: 268px;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 1.64 / 1;
     order: 0;
   }
 
   .hero-storefront img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     padding: 0;
-    transform: translateX(-2%) scale(1.14);
+    transform: none;
   }
 
   .services-section {

@@ -18,6 +18,9 @@
       content="Atelier Sanem, özel dikim, gelinlik, abiye, kadın giyim ve profesyonel tadilat için butik ve güven veren atölye deneyimi sunar."
     >
     <meta property="og:image" content="https://sanematelier.com/front-facing.png">
+    <meta property="og:image:width" content="1448">
+    <meta property="og:image:height" content="1086">
+    <meta property="og:image:alt" content="Atelier Sanem'in İstanbul Ataşehir'deki terzi atölyesi vitrini">
     <meta property="og:locale" content="tr_TR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Atelier Sanem | Özel Dikim ve Tadilat Atölyesi">
@@ -26,12 +29,16 @@
       content="Özel dikim, gelinlik, abiye, kadın giyim ve profesyonel tadilat için Atelier Sanem."
     >
     <meta name="twitter:image" content="https://sanematelier.com/front-facing.png">
+    <meta name="twitter:image:alt" content="Atelier Sanem'in İstanbul Ataşehir'deki terzi atölyesi vitrini">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
+    <link rel="preload" as="image" href="front-facing.webp" media="(min-width: 721px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/new-mobile-storefront-photo.webp" media="(max-width: 720px)" fetchpriority="high">
+    <meta name="theme-color" content="#fcfaf5">
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
       {
@@ -123,8 +130,15 @@
       <section class="hero-section">
         <figure class="hero-image hero-storefront" data-reveal>
           <picture>
-            <source media="(max-width: 720px)" srcset="assets/new-mobile-storefront-photo.png">
-            <img src="front-facing.png" alt="Atelier Sanem storefront">
+            <source media="(max-width: 720px)" srcset="assets/new-mobile-storefront-photo.webp" type="image/webp">
+            <img
+              src="front-facing.webp"
+              alt="Atelier Sanem'in İstanbul Ataşehir'deki terzi atölyesi vitrini"
+              width="1280"
+              height="960"
+              fetchpriority="high"
+              decoding="async"
+            >
           </picture>
         </figure>
 
@@ -158,7 +172,7 @@
                 <article class="service-card has-prev">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-soft has-image">
-                      <img class="card-1-image" src="assets/card1-image.png" alt="Atelier Sanem kişiye özel dikim çalışması">
+                      <img class="card-1-image" src="assets/card1-image.webp" alt="Atelier Sanem kişiye özel dikim çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                     <button class="card-prev" type="button" aria-label="Önceki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -173,7 +187,7 @@
                 <article class="service-card">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-warm has-image">
-                      <img class="card-2-image" src="assets/card-2-image.png" alt="Atelier Sanem gelinlik ve abiye dikiminden bir kare">
+                      <img class="card-2-image" src="assets/card-2-image.webp" alt="Atelier Sanem gelinlik ve abiye dikiminden bir kare" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                   </div>
                   <h3>Gelinlik &amp; Abiye dikimi</h3>
@@ -182,7 +196,7 @@
                 <article class="service-card has-next">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-rose has-image">
-                      <img class="card-3-image" src="assets/card-3-image.png" alt="Atelier Sanem kadın giyim dikimi çalışması">
+                      <img class="card-3-image" src="assets/card-3-image.webp" alt="Atelier Sanem kadın giyim dikimi çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                     <button class="card-next" type="button" aria-label="Sonraki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -200,7 +214,7 @@
                 <article class="service-card has-prev">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-plum has-image">
-                      <img class="card-4-image" src="assets/card-4.png" alt="Atelier Sanem bay/bayan tadilat çalışması">
+                      <img class="card-4-image" src="assets/card-4.webp" alt="Atelier Sanem bay/bayan tadilat çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                     <button class="card-prev" type="button" aria-label="Önceki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -215,7 +229,7 @@
                 <article class="service-card">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-moss has-image">
-                      <img class="card-5-image" src="assets/cart-5.png" alt="Atelier Sanem daraltma ve genişletme çalışması">
+                      <img class="card-5-image" src="assets/cart-5.webp" alt="Atelier Sanem daraltma ve genişletme çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                   </div>
                   <h3>Daraltma / genişletme</h3>
@@ -224,7 +238,7 @@
                 <article class="service-card has-next">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-soft has-image">
-                      <img class="card-6-image" src="assets/card-6.png" alt="Atelier Sanem boy kısaltma ve paça işlemleri çalışması">
+                      <img class="card-6-image" src="assets/card-6.webp" alt="Atelier Sanem boy kısaltma ve paça işlemleri çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                     <button class="card-next" type="button" aria-label="Sonraki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -242,7 +256,7 @@
                 <article class="service-card has-prev">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-warm has-image">
-                      <img class="card-7-image" src="assets/card-7.png" alt="Atelier Sanem ölçüye özel çalışma">
+                      <img class="card-7-image" src="assets/card-7.webp" alt="Atelier Sanem ölçüye özel çalışma" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                     <button class="card-prev" type="button" aria-label="Önceki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -257,7 +271,7 @@
                 <article class="service-card">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-rose has-image">
-                      <img class="card-8-image" src="assets/card-8.png" alt="Atelier Sanem tamir ve onarım çalışması">
+                      <img class="card-8-image" src="assets/card-8.webp" alt="Atelier Sanem tamir ve onarım çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                   </div>
                   <h3>Tamir / onarım işlemleri</h3>
@@ -266,7 +280,7 @@
                 <article class="service-card has-next">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-plum has-image">
-                      <img class="card-9-image" src="assets/card-9.png" alt="Atelier Sanem özel tasarım çalışması">
+                      <img class="card-9-image" src="assets/card-9.webp" alt="Atelier Sanem özel tasarım çalışması" width="900" height="900" loading="lazy" decoding="async">
                     </div>
                     <button class="card-next" type="button" aria-label="Sonraki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -284,7 +298,7 @@
                 <article class="service-card has-prev">
                   <div class="service-photo-wrap">
                     <div class="service-photo photo-moss has-image">
-                      <img class="card-10-image" src="assets/card-10.png" alt="Atelier Sanem dikiş eğitimi">
+                      <img class="card-10-image" src="assets/card-10.webp" alt="Atelier Sanem dikiş eğitimi" width="709" height="943" loading="lazy" decoding="async">
                     </div>
                     <button class="card-prev" type="button" aria-label="Önceki hizmetleri göster">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -344,37 +358,37 @@
             <div class="work-track">
               <article class="work-card photo-soft has-image" data-card-index="0">
                 <picture>
-                  <source media="(max-width: 720px)" srcset="assets/mobile-card1-after.png">
-                  <img class="work-after-image" src="assets/my-work-card1-after.png" alt="Atelier Sanem özel dikim — tamamlanmış parça" loading="lazy" decoding="async">
+                  <source media="(max-width: 720px)" srcset="assets/mobile-card1-after.webp" type="image/webp">
+                  <img class="work-after-image" src="assets/my-work-card1-after.webp" alt="Atelier Sanem özel dikim — tamamlanmış parça" width="1400" height="788" loading="lazy" decoding="async">
                 </picture>
                 <div class="work-card-before" aria-hidden="true">
                   <picture>
-                    <source media="(max-width: 720px)" srcset="assets/mobile-card1-before.png">
-                    <img src="assets/my-work-card1-before.png" alt="" loading="lazy" decoding="async">
+                    <source media="(max-width: 720px)" srcset="assets/mobile-card1-before.webp" type="image/webp">
+                    <img src="assets/my-work-card1-before.webp" alt="" width="1400" height="788" loading="lazy" decoding="async">
                   </picture>
                 </div>
               </article>
               <article class="work-card photo-warm has-image" data-card-index="1">
                 <picture>
-                  <source media="(max-width: 720px)" srcset="assets/mobile-card2-after.png">
-                  <img class="work-after-image" src="assets/my-work-card2-after.png" alt="Atelier Sanem gelinlik & abiye — tamamlanmış parça" loading="lazy" decoding="async">
+                  <source media="(max-width: 720px)" srcset="assets/mobile-card2-after.webp" type="image/webp">
+                  <img class="work-after-image" src="assets/my-work-card2-after.webp" alt="Atelier Sanem gelinlik & abiye — tamamlanmış parça" width="1400" height="788" loading="lazy" decoding="async">
                 </picture>
                 <div class="work-card-before" aria-hidden="true">
                   <picture>
-                    <source media="(max-width: 720px)" srcset="assets/mobile-card2-before.png">
-                    <img src="assets/my-work-card2-before.png" alt="" loading="lazy" decoding="async">
+                    <source media="(max-width: 720px)" srcset="assets/mobile-card2-before.webp" type="image/webp">
+                    <img src="assets/my-work-card2-before.webp" alt="" width="1400" height="788" loading="lazy" decoding="async">
                   </picture>
                 </div>
               </article>
               <article class="work-card photo-rose has-image" data-card-index="2">
                 <picture>
-                  <source media="(max-width: 720px)" srcset="assets/mobile-card3-after.png">
-                  <img class="work-after-image" src="assets/mywork-card3-after.png" alt="Atelier Sanem tadilat — tamamlanmış parça" loading="lazy" decoding="async">
+                  <source media="(max-width: 720px)" srcset="assets/mobile-card3-after.webp" type="image/webp">
+                  <img class="work-after-image" src="assets/mywork-card3-after.webp" alt="Atelier Sanem tadilat — tamamlanmış parça" width="1400" height="788" loading="lazy" decoding="async">
                 </picture>
                 <div class="work-card-before" aria-hidden="true">
                   <picture>
-                    <source media="(max-width: 720px)" srcset="assets/mobile-card3-before.png">
-                    <img src="assets/mywork-card3-before.png" alt="" loading="lazy" decoding="async">
+                    <source media="(max-width: 720px)" srcset="assets/mobile-card3-before.webp" type="image/webp">
+                    <img src="assets/mywork-card3-before.webp" alt="" width="1400" height="788" loading="lazy" decoding="async">
                   </picture>
                 </div>
               </article>
@@ -520,7 +534,7 @@
           2. Copy the URL (e.g. https://www.instagram.com/p/Cxxxxxxxxxxx/)
           3. Paste it into the `data-instgrm-permalink` attribute below
           4. Also paste it inside the inner <a href="..."> as the fallback link
-          The embed.js script at the bottom of the page renders these automatically.
+          The site lazy-loads Instagram's embed script when this gallery is near the viewport.
         -->
         <div class="social-gallery" data-reveal>
           <div class="social-embed-card" data-permalink="https://www.instagram.com/p/DXOUsiFAgDD/">
@@ -603,10 +617,12 @@
 
       <div class="footer-message">
         <span>Mesaj gönder</span>
-        <p>WhatsApp Business bağlantısı geldiğinde bu alan doğrudan randevu mesajı açacak.</p>
+        <p>Kısa bir randevu mesajı hazırlayıp doğrudan WhatsApp Business görüşmesine geçin.</p>
         <a
           class="message-link"
-          href="https://wa.me/?text=Merhaba%20Sanem%20Atelier%2C%20randevu%20almak%20istiyorum."
+          href="https://wa.me/905339697667?text=Merhaba%20Sanem%20Atelier%2C%20randevu%20almak%20istiyorum."
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <span>Merhaba, randevu almak istiyorum.</span>
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -618,6 +634,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script async src="https://www.instagram.com/embed.js"></script>
   </body>
 </html>

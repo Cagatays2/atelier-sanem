@@ -1191,6 +1191,13 @@ h3 {
 
 .social-embed-card {
   min-width: 0;
+  min-height: 600px;
+  background:
+    linear-gradient(145deg, rgba(244, 234, 220, 0.72), rgba(252, 250, 245, 0.86)),
+    var(--linen);
+  border: 1px solid rgba(23, 22, 21, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 16px 42px rgba(35, 28, 23, 0.1);
 }
 
 .social-gallery .instagram-media {
@@ -1201,7 +1208,7 @@ h3 {
   margin: 0 !important;
   overflow: hidden !important;
   border-radius: 10px !important;
-  box-shadow: 0 16px 42px rgba(35, 28, 23, 0.12) !important;
+  box-shadow: none !important;
 }
 
 .social-gallery .instagram-media iframe {
@@ -1689,20 +1696,60 @@ body.reveal-ready [data-reveal].is-visible {
   }
 
   .work-sticky {
+    position: relative;
     justify-content: flex-start;
     gap: 20px;
+    min-height: auto;
     padding-top: 96px;
-    padding-bottom: 0;
+    padding-bottom: 54px;
+    overflow: visible;
+  }
+
+  .work-pin-section {
+    height: auto !important;
   }
 
   .work-window {
     --work-card-w: calc(100vw - 32px);
+    width: calc(100% + 32px);
+    margin: 0 -16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .work-window::-webkit-scrollbar {
+    display: none;
+  }
+
+  .work-window::before,
+  .work-window::after,
+  .work-progress {
+    display: none;
+  }
+
+  .work-track {
+    gap: 14px;
+    width: max-content;
+    padding: 0 16px 10px;
+    transform: none !important;
+    will-change: auto;
   }
 
   .work-card {
+    flex: 0 0 var(--work-card-w);
     height: min(64svh, 420px);
     min-height: 0;
     padding: 18px;
+    scroll-snap-align: center;
+  }
+
+  .work-card-before {
+    clip-path: inset(0 100% 0 0) !important;
+    will-change: auto;
   }
 
   .reviews-section {
@@ -1791,6 +1838,7 @@ body.reveal-ready [data-reveal].is-visible {
     flex: 0 0 min(84vw, 326px);
     width: min(84vw, 326px) !important;
     height: 420px !important;
+    min-height: 420px;
     cursor: pointer;
     overflow: hidden;
     scroll-snap-align: start;

@@ -40,8 +40,38 @@ const cardNextButtons = document.querySelectorAll(".card-next");
 const cardPrevButtons = document.querySelectorAll(".card-prev");
 const serviceDots = document.querySelectorAll(".services-dot");
 const instagramEmbeds = document.querySelectorAll(".social-gallery .social-embed-card");
+const socialGallery = document.querySelector(".social-gallery");
+const mobileWorkQuery = window.matchMedia("(max-width: 720px)");
 const TOTAL_SERVICE_PAGES = 4;
 let currentServicePage = 0;
+let instagramScriptRequested = false;
+let lastLayoutWidth = window.innerWidth;
+let resizeTimer = 0;
+
+const warmupImageUrls = [
+  "assets/card1-image.webp",
+  "assets/card-2-image.webp",
+  "assets/card-3-image.webp",
+  "assets/card-4.webp",
+  "assets/cart-5.webp",
+  "assets/card-6.webp",
+  "assets/card-7.webp",
+  "assets/card-8.webp",
+  "assets/card-9.webp",
+  "assets/card-10.webp",
+  "assets/my-work-card1-after.webp",
+  "assets/my-work-card1-before.webp",
+  "assets/my-work-card2-after.webp",
+  "assets/my-work-card2-before.webp",
+  "assets/mywork-card3-after.webp",
+  "assets/mywork-card3-before.webp",
+  "assets/mobile-card1-after.webp",
+  "assets/mobile-card1-before.webp",
+  "assets/mobile-card2-after.webp",
+  "assets/mobile-card2-before.webp",
+  "assets/mobile-card3-after.webp",
+  "assets/mobile-card3-before.webp",
+];
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -95,6 +125,17 @@ function recalculateWorkGeometry() {
     return;
   }
 
+  if (mobileWorkQuery.matches) {
+    workGeometry = null;
+    workSection.style.removeProperty("--work-section-height");
+    workSection.style.removeProperty("--work-progress");
+    workTrack.style.removeProperty("--work-x");
+    cards.forEach((card) => {
+      card.style.setProperty("--reveal", "100%");
+    });
+    return;
+  }
+
   const firstCard = cards[0];
   const lastCard = cards[cardCount - 1];
   const distance = Math.max(0, lastCard.offsetLeft - firstCard.offsetLeft);
@@ -127,7 +168,7 @@ function recalculateWorkGeometry() {
 }
 
 function updateWorkSection() {
-  if (!workSection || !workGeometry) return;
+  if (!workSection || !workGeometry || mobileWorkQuery.matches) return;
 
   const { cards, cardCount, slideStep, entryHold, revealLength, slideLength, totalAnim } = workGeometry;
 
@@ -279,10 +320,71 @@ function normalizeInstagramEmbeds() {
   });
 }
 
+function loadInstagramEmbeds() {
+  if (instagramScriptRequested) return;
+  instagramScriptRequested = true;
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://www.instagram.com/embed.js";
+  script.onload = () => {
+    normalizeInstagramEmbeds();
+    setTimeout(normalizeInstagramEmbeds, 800);
+  };
+  document.body.appendChild(script);
+}
+
+function warmImageCache() {
+  if (navigator.connection && navigator.connection.saveData) return;
+
+  warmupImageUrls.forEach((url, index) => {
+    setTimeout(() => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+    }, index * 60);
+  });
+}
+
+function scheduleWorkGeometryRecalculation(force = false) {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const widthChanged = Math.abs(window.innerWidth - lastLayoutWidth) > 2;
+    if (force || widthChanged || !mobileWorkQuery.matches) {
+      lastLayoutWidth = window.innerWidth;
+      recalculateWorkGeometry();
+    }
+    requestWorkUpdate();
+  }, force ? 120 : 180);
+}
+
+if (socialGallery) {
+  if ("IntersectionObserver" in window) {
+    const instagramObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          loadInstagramEmbeds();
+          instagramObserver.disconnect();
+        }
+      },
+      {
+        rootMargin: "700px 0px",
+        threshold: 0.01,
+      }
+    );
+
+    instagramObserver.observe(socialGallery);
+  } else {
+    window.addEventListener("load", loadInstagramEmbeds, { once: true });
+  }
+}
+
 window.addEventListener("load", () => {
   normalizeInstagramEmbeds();
   setTimeout(normalizeInstagramEmbeds, 800);
   setTimeout(normalizeInstagramEmbeds, 1800);
+  const idle = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 900));
+  idle(warmImageCache, { timeout: 1500 });
 });
 window.addEventListener("resize", normalizeInstagramEmbeds);
 
@@ -308,14 +410,14 @@ function requestWorkUpdate() {
 }
 
 window.addEventListener("scroll", requestWorkUpdate, { passive: true });
-window.addEventListener("resize", () => {
-  recalculateWorkGeometry();
-  requestWorkUpdate();
-});
-window.addEventListener("orientationchange", () => {
-  recalculateWorkGeometry();
-  requestWorkUpdate();
-});
+window.addEventListener("resize", () => scheduleWorkGeometryRecalculation(false), { passive: true });
+window.addEventListener("orientationchange", () => scheduleWorkGeometryRecalculation(true), { passive: true });
+
+if (typeof mobileWorkQuery.addEventListener === "function") {
+  mobileWorkQuery.addEventListener("change", () => scheduleWorkGeometryRecalculation(true));
+} else if (typeof mobileWorkQuery.addListener === "function") {
+  mobileWorkQuery.addListener(() => scheduleWorkGeometryRecalculation(true));
+}
 
 setServicePage(0);
 recalculateWorkGeometry();

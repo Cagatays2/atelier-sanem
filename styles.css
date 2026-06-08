@@ -1696,60 +1696,20 @@ body.reveal-ready [data-reveal].is-visible {
   }
 
   .work-sticky {
-    position: relative;
     justify-content: flex-start;
     gap: 20px;
-    min-height: auto;
     padding-top: 96px;
-    padding-bottom: 54px;
-    overflow: visible;
-  }
-
-  .work-pin-section {
-    height: auto !important;
+    padding-bottom: 0;
   }
 
   .work-window {
     --work-card-w: calc(100vw - 32px);
-    width: calc(100% + 32px);
-    margin: 0 -16px;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 16px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .work-window::-webkit-scrollbar {
-    display: none;
-  }
-
-  .work-window::before,
-  .work-window::after,
-  .work-progress {
-    display: none;
-  }
-
-  .work-track {
-    gap: 14px;
-    width: max-content;
-    padding: 0 16px 10px;
-    transform: none !important;
-    will-change: auto;
   }
 
   .work-card {
-    flex: 0 0 var(--work-card-w);
     height: min(64svh, 420px);
     min-height: 0;
     padding: 18px;
-    scroll-snap-align: center;
-  }
-
-  .work-card-before {
-    clip-path: inset(0 100% 0 0) !important;
-    will-change: auto;
   }
 
   .reviews-section {

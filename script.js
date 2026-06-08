@@ -125,17 +125,6 @@ function recalculateWorkGeometry() {
     return;
   }
 
-  if (mobileWorkQuery.matches) {
-    workGeometry = null;
-    workSection.style.removeProperty("--work-section-height");
-    workSection.style.removeProperty("--work-progress");
-    workTrack.style.removeProperty("--work-x");
-    cards.forEach((card) => {
-      card.style.setProperty("--reveal", "100%");
-    });
-    return;
-  }
-
   const firstCard = cards[0];
   const lastCard = cards[cardCount - 1];
   const distance = Math.max(0, lastCard.offsetLeft - firstCard.offsetLeft);
@@ -168,7 +157,7 @@ function recalculateWorkGeometry() {
 }
 
 function updateWorkSection() {
-  if (!workSection || !workGeometry || mobileWorkQuery.matches) return;
+  if (!workSection || !workGeometry) return;
 
   const { cards, cardCount, slideStep, entryHold, revealLength, slideLength, totalAnim } = workGeometry;
 
